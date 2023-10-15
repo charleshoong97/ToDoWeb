@@ -35,12 +35,16 @@ export default function LoginPage() {
   return (
     <Flex
       sx={{
+        height: "100vh",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        backgroundImage: "url('/assets/svg/background.svg')",
       }}
     >
-      <Heading as={"h2"}>Welcome to To Do Web</Heading>
+      <Heading as={"h2"} sx={{ fontSize: 50, mb: 3 }}>
+        Welcome
+      </Heading>
       <form onSubmit={handleSubmit(submitForm)}>
         <CustomField
           label={"Email"}
@@ -76,10 +80,16 @@ export default function LoginPage() {
           control={control}
           disabled={isSubmitting}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button
+          sx={{ width: "100%", mt: 2 }}
+          type="submit"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Loading..." : "Login"}
         </Button>
-        <div sx={{ color: "red", fontSize: "15px", mt: 2 }}>{apiError}</div>
+        <div sx={{ color: "red", fontSize: "15px", mt: 2, minHeight: 23 }}>
+          {apiError}
+        </div>
       </form>
     </Flex>
   );

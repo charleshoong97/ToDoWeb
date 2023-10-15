@@ -13,6 +13,7 @@ export function CustomField(props) {
       <div sx={{ textAlign: "left" }}>{props.label}</div>
       <Input
         sx={{
+          backgroundColor: "white",
           borderColor: fieldState.error ? "red" : "initial",
           borderWidth: fieldState.error ? "2px" : "0.5px",
           "&:focus-visible": {

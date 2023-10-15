@@ -32,6 +32,7 @@ export const theme = {
   },
   forms: {
     input: {
+      minWidth: ["250px", "300px"],
       "&:disabled": {
         backgroundColor: "disable",
       },
