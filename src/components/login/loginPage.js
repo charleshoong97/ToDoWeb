@@ -1,14 +1,18 @@
 /** @jsxImportSource theme-ui */
 
 import { useForm } from "react-hook-form";
-import { Button, Flex, Heading, Input } from "theme-ui";
+import { Button, Flex, Heading } from "theme-ui";
 import { CustomField } from "../form/field";
 import { useState } from "react";
 import { login } from "../../api/authentication";
+import { useDispatch } from "react-redux";
+import { register } from "../../utilities/redux/slice/authenticationSlice";
 
 export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiError, setApiError] = useState();
+
+  const dispatch = useDispatch();
 
   const { handleSubmit, control, reset } = useForm({
     defaultValues: { email: "", password: "" },
@@ -18,12 +22,11 @@ export default function LoginPage() {
     setIsSubmitting(true);
     setApiError();
     let response = await login(data);
-    console.log(response);
     if (response.error) {
       setApiError(response.message);
     } else {
       console.log("Login Success");
-      // save to redux and navigate to dashboard
+      dispatch(register(response.data));
     }
     setIsSubmitting(false);
     reset(data);
