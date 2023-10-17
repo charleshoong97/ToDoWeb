@@ -77,6 +77,7 @@ export default function Dashboard() {
           <Flex
             sx={{
               minWidth: ["90vw"],
+              width: [null, "100%"],
               gap: 40,
               flexDirection: ["column", "row"],
               alignItems: ["center", "start"],
