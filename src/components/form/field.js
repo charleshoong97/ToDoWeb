@@ -43,6 +43,46 @@ export function CustomField(props) {
   );
 }
 
+export function CustomFieldAllowSpace(props) {
+  const { field, fieldState } = useController({
+    ...props,
+  });
+
+  return (
+    <div>
+      <div sx={{ textAlign: "left" }}>{props.label}</div>
+      <Input
+        sx={{
+          backgroundColor: "white",
+          borderColor: fieldState.error ? "red" : "initial",
+          borderWidth: fieldState.error ? "2px" : "0.5px",
+          "&:focus-visible": {
+            outlineColor: fieldState.error ? "red" : "initial",
+          },
+        }}
+        type={props.type}
+        ref={field.ref}
+        name={field.name}
+        onChange={field.onChange}
+        onBlur={field.onBlur}
+        value={field.value}
+        disabled={field.disabled}
+      />
+      <div
+        sx={{
+          visibility: fieldState.error ? "visible" : "hidden",
+          color: "red",
+          height: "20px",
+          fontSize: "10px",
+          textAlign: "left",
+        }}
+      >
+        {fieldState.error?.message}
+      </div>
+    </div>
+  );
+}
+
 export function CustomSelectField(props) {
   const { field, fieldState } = useController({
     ...props,

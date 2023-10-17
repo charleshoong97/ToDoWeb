@@ -1,7 +1,11 @@
 /** @jsxImportSource theme-ui */
 
 import { Button, Flex, Heading } from "theme-ui";
-import { CustomField, CustomSelectField } from "../form/field";
+import {
+  CustomField,
+  CustomFieldAllowSpace,
+  CustomSelectField,
+} from "../form/field";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -61,7 +65,7 @@ export default function CreateToDo() {
           width: ["250px", "300px"],
         }}
       >
-        <CustomField
+        <CustomFieldAllowSpace
           label={"Label"}
           type="text"
           name={"label"}
