@@ -32,9 +32,25 @@ export const theme = {
   },
   forms: {
     input: {
-      minWidth: ["250px", "300px"],
       "&:disabled": {
         backgroundColor: "disable",
+      },
+    },
+    select: {
+      "&:disabled": {
+        backgroundColor: "disable",
+      },
+    },
+    checkbox: {
+      color: "orange",
+      "input:focus ~ &": {
+        outline: "transparent",
+        color: "orange",
+        background: "transparent",
+      },
+      "input:checked ~ &": {
+        outline: "transparent",
+        color: "orange",
       },
     },
     radio: {
@@ -49,7 +65,9 @@ export const theme = {
   },
   styles: {
     root: {
-      height: "100vh",
+      // display: "flex",
+      // height: "100vh",
+      width: "100vw",
       fontFamily: "body",
       lineHeight: "body",
       fontWeight: "body",
@@ -103,7 +121,8 @@ export const theme = {
       lineHeight: "body",
     },
     a: {
-      color: "primary",
+      color: "black",
+      textDecoration: "unset",
     },
     pre: {
       fontFamily: "monospace",
@@ -135,9 +154,15 @@ export const theme = {
   },
   buttons: {
     primary: {
+      backgroundColor: "#27ccb0",
       cursor: "pointer",
+      transition: "transform .2s",
       "&:disabled": {
         backgroundColor: "grey",
+      },
+      "&:hover": {
+        scale: 1.2,
+        transform: "scale(1.05)",
       },
     },
   },

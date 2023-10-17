@@ -7,15 +7,21 @@ import { useState } from "react";
 import { login } from "../../api/authentication";
 import { useDispatch } from "react-redux";
 import { register } from "../../utilities/redux/slice/authenticationSlice";
+import { useNavigate } from "react-router-dom";
+import { setLocalStorage } from "../../utilities/localStorage/localStorage";
 
-export default function LoginPage() {
+export default function Login() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [apiError, setApiError] = useState();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { handleSubmit, control, reset } = useForm({
-    defaultValues: { email: "", password: "" },
+    defaultValues: {
+      email: process.env.REACT_APP_EMAIL ?? "",
+      password: process.env.REACT_APP_PASSWORD ?? "",
+    },
   });
 
   const submitForm = async (data) => {
@@ -25,8 +31,9 @@ export default function LoginPage() {
     if (response.error) {
       setApiError(response.message);
     } else {
-      console.log("Login Success");
       dispatch(register(response.data));
+      setLocalStorage({ authentication: response.data });
+      navigate("/dashboard");
     }
     setIsSubmitting(false);
     reset(data);
@@ -35,17 +42,25 @@ export default function LoginPage() {
   return (
     <Flex
       sx={{
+        pt: 50,
         height: "100vh",
+        width: "100vw",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
         backgroundImage: "url('/assets/svg/background.svg')",
+        backgroundSize: "cover",
       }}
     >
-      <Heading as={"h2"} sx={{ fontSize: 50, mb: 3 }}>
+      <Heading as={"h2"} sx={{ fontSize: [30, 50], mb: 3 }}>
         Welcome
       </Heading>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form
+        onSubmit={handleSubmit(submitForm)}
+        sx={{
+          width: ["250px", "300px"],
+        }}
+      >
         <CustomField
           label={"Email"}
           type="text"

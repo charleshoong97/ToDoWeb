@@ -7,12 +7,12 @@ export const authenticationSlice = createSlice({
     register: (state, action) => {
       return { ...action.payload };
     },
-    remove: (state) => {
+    logout: (state) => {
       return {};
     },
   },
 });
 
-export const { register, remove } = authenticationSlice.actions;
+export const { register, logout } = authenticationSlice.actions;
 
 export default authenticationSlice.reducer;
