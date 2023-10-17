@@ -42,9 +42,20 @@ export default function CategoryCard(props) {
         Pending : {todo.filter((i) => i.isCompleted == false).length}
       </span>
       <div sx={{ mt: 2 }}>
-        {todo.map((i) => (
-          <Item key={i.id} {...i} />
-        ))}
+        {todo
+          .filter((i) => i.isCompleted == false)
+          .sort((a, b) => Date.parse(b.updatedDate) - Date.parse(a.updatedDate))
+          .map((i) => (
+            <Item key={i.id} {...i} />
+          ))}
+        {todo
+          .filter((i) => i.isCompleted == true)
+          .sort((a, b) => Date.parse(a.updatedDate) - Date.parse(b.updatedDate))
+          .map((i) => (
+            <Item key={i.id} {...i}>
+              {console.log(Date.parse(i.updatedDate))}
+            </Item>
+          ))}
       </div>
     </div>
   );

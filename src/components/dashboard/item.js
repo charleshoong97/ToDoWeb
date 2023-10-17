@@ -18,7 +18,7 @@ export default function Item(props) {
     };
     let response = await updateExistingToDo(data);
     if (!response.error) {
-      dispatch(updateToDo(data));
+      dispatch(updateToDo(response.data));
     } else {
       ref.current.checked = !event.target.checked;
     }

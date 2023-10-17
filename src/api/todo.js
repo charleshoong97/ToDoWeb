@@ -51,7 +51,7 @@ export const updateExistingToDo = async (data) => {
     updatedDate: currentDateTime,
   });
 
-  return response;
+  return { ...response, data: { ...data, updatedDate: currentDateTime } };
 };
 
 export const deleteExistingToDo = async (data) => {
